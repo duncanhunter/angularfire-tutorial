@@ -13,8 +13,8 @@ export class AppComponent {
   constructor(private db: AngularFireDatabase) {
     const observable = this.db.object(`connected`);
 
-    observable.take(2).subscribe(
-      next => console.log('next', next),
+    observable.subscribe(
+      next => console.log('connected', next),
       error => console.log('error', error),
       () => console.log('complete')
     );
