@@ -8,10 +8,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/catch';
-
 import { Company } from '../company';
-
-
 
 @Injectable()
 export class CompanyService {
@@ -29,8 +26,8 @@ export class CompanyService {
   }
 
   getCompanies() {
-    return this.companies$;
-      // .catch(this.errorHandler);
+    return this.companies$
+      .catch(this.errorHandler);
   }
 
   saveCompany(company) {
@@ -51,8 +48,8 @@ export class CompanyService {
       .catch(error => console.log(error));
   }
 
-  private errorHandler(error): void {
+  private errorHandler(error): Observable<Error> {
     console.log(error);
-    // return Observable.throw(error);
+    return Observable.throw(error);
   }
 }
